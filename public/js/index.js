@@ -49,7 +49,26 @@ userUVidElement.onclick = () => {
 
 userEmailElement.onclick = () => {
   const userEmail = prompt('이메일을 입력해 주세요.');
-  localStorage.setItem('userEmail', userEmail);
+  if (checkemail(userEmail)) {
+    localStorage.setItem('userEmail', userEmail);
+    setUserEmailInnerHtml(userEmail);
+  }else {
+    setUserEmailInnerHtml('이메일을 등록하세요');
+  }
 
-  setUserEmailInnerHtml(userEmail);
+};
+
+function checkemail() {
+
+  var email = localStorage.textContent;
+
+  var emailvaild = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+  if (emailvaild.test(email)==false) {
+
+  alert("이메일형식이 올바르지 않습니다.");
+
+  return false;
+  };
+
 };
